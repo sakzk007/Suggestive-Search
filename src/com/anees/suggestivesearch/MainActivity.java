@@ -50,6 +50,7 @@ public class MainActivity extends Activity {
 	    public void onTextChanged(CharSequence s, int start, int before, int count) {
 		suggestionTask = new SuggestionTask();
 		suggestionTask.execute(s.toString());
+		
 	    }
 
 	    @Override
@@ -193,8 +194,10 @@ public class MainActivity extends Activity {
 	    try {
 		// Creating a SimpleAdapter for the AutoCompleteTextView
 		SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), result, android.R.layout.simple_list_item_1, from, to);
+		Log.w("Response",result.toString());
 		// Setting the adapter
 		atvSuggestion.setAdapter(adapter);
+		adapter.notifyDataSetChanged();
 	    } catch (Exception e) {
 		Log.e("Main Breaking!", e.getMessage());
 	    }
